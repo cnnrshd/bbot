@@ -31,7 +31,7 @@ class internetdb(BaseModule):
             self.emit_event(self.helpers.make_netloc(event.data, port), "OPEN_TCP_PORT", source=event)
         for vuln in data.get("vulns", []):
             self.emit_event(
-                {"description": f"Shodan reported verified CVE {vuln}", "host": str(event.host), "type": "cve"},
+                {"description": f"Shodan reported unverified CVE {vuln}", "host": str(event.host), "type": "cve"},
                 "FINDING",
                 source=event,
             )
