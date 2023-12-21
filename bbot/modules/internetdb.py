@@ -49,5 +49,8 @@ class internetdb(BaseModule):
         if data:
             if r.status_code == 200:
                 self._parse_response(data=data, event=event)
+            elif r.status_code == 404:
+                self.debug(f"No results for {event.data}")
             else:
-                self.error(f"Shodan Error for {event.data}: {data['type']}: {data['msg']}")
+                self.error(f"Shodan InternetDB Error for {event.data}: {r.status_code}")
+                self.debug(f"{r.text}")
